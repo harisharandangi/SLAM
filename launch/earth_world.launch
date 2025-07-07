@@ -1,0 +1,25 @@
+<launch>
+  <!-- Robot model and world file -->
+  <arg name="model" default="burger" />
+<arg name="multi_robot" default="false"/>
+  <arg name="world_file" default="$(find pathplanner)/maps/worlds/earth.world" />
+  <env name="TURTLEBOT3_MODEL" value="$(arg model)" />
+
+  <!-- Use simulation time -->
+  <param name="use_sim_time" value="true" />
+
+  <!-- Launch Gazebo with the custom world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(arg world_file)" />
+  </include>
+
+  <!-- Load robot description -->
+  <param name="robot_description" command="$(find xacro)/xacro '$(find turtlebot3_description)/urdf/turtlebot3_$(arg model).urdf.xacro'" />
+
+  <!-- Publish joint states and TF -->
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen"/>
+  <node pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher" output="screen"/>
+
+
+</launch>
+

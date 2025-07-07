@@ -1,0 +1,17 @@
+<launch>
+  <!-- Launch the world -->
+  <include file="$(find pathplanner)/launch/earth_world.launch" />
+  
+  <!-- Launch global planner -->
+  <include file="$(find pathplanner)/launch/global_planner.launch" />
+
+  <!-- Launch local planner -->
+  <include file="$(find pathplanner)/launch/local_planner.launch" />
+
+  <!-- Launch static transform between map and odom -->
+  <include file="$(find pathplanner)/launch/static_tf.launch"/>
+
+  <!-- Launch RViz -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find pathplanner)/rviz/nav_config.rviz" output="screen" />
+</launch>
+

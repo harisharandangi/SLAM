@@ -1,0 +1,12 @@
+update_rate: 10
+
+potential_field:
+  k_att: 1.0
+  k_rep: 0.7
+  d0: 0.6
+  safe_dist: 0.2
+
+max_vel:
+  linear: 0.3
+  angular: 1.0
+

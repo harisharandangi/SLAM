@@ -1,0 +1,5 @@
+<launch>
+  <!-- Static transform from map to odom -->
+  <node pkg="tf2_ros" type="static_transform_publisher" name="map_to_odom" args="0 0 0 0 0 0 map odom" />
+</launch>
+

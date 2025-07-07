@@ -1,0 +1,36 @@
+<launch>
+  <!-- Wrapper launch for TurtleBot3 Burger in Custom World -->
+
+  <!-- Declare arguments -->
+  <arg name="model"        default="burger"/>
+  <arg name="world_file"   default="$(find turtlebot3_local_planner)/maps/worlds/earth.world"/>
+  <arg name="paused"       default="false"/>
+  <arg name="use_sim_time" default="true"/>
+
+  <!-- 1. Launch Gazebo empty world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name"   value="$(arg world_file)"/>
+    <arg name="paused"       value="$(arg paused)"/>
+    <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+  </include>
+
+  <!-- 2. Load TurtleBot3 URDF and spawn in Gazebo -->
+  <param name="robot_description" command="$(find xacro)/xacro '$(find turtlebot3_description)/urdf/turtlebot3_$(arg model).urdf.xacro'"/>
+  
+
+  <!-- 3. Publish Joint States and TF -->
+  <node pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher"/>
+<node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher_custom">
+    <param name="publish_frequency" value="50.0"/>
+  </node>
+
+  <!-- 4. Static transform: base_link -> base_scan -->
+  <node pkg="tf2_ros" type="static_transform_publisher" name="static_laser_tf"
+        args="0 0 0.035 0 0 0 1 base_link base_scan"/>
+
+  <!-- Manual SLAM workflow reminders -->
+  <!-- SLAM:    roslaunch turtlebot3_slam turtlebot3_slam.launch slam_methods:=gmapping use_sim_time:=true params_file:=~/catkin_ws/src/turtlebot3_local_planner/config/gmapping_params.yaml -->
+  <!-- Teleop: roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch -->
+  <!-- Save:   rosrun map_server map_saver -f ~/map -->
+</launch>
+

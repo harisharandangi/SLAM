@@ -1,0 +1,110 @@
+Panels:
+  - Class: rviz/Displays
+    Name: Displays
+    Help Height: 78
+  - Class: rviz/Selection
+    Name: Selection
+  - Class: rviz/Tool Properties
+    Name: Tool Properties
+  - Class: rviz/Views
+    Name: Views
+  - Class: rviz/Time
+    Name: Time
+
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Name: Grid
+      Class: rviz/Grid
+      Enabled: true
+      Cell Size: 1
+      Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+      Line Style: Lines
+      Plane: XY
+      Reference Frame: map
+
+    - Name: RobotModel
+      Class: rviz/RobotModel
+      Enabled: true
+      Robot Description: robot_description
+      Visual Enabled: true
+      Collision Enabled: false
+      TF Prefix: ""
+
+    - Name: Map
+      Class: rviz/Map
+      Enabled: true
+      Topic: /map
+      Alpha: 0.7
+      Color Scheme: map
+      Unreliable: false
+      Use Timestamp: false
+
+    - Name: Global Path
+      Class: rviz/Path
+      Enabled: true
+      Topic: /global_path
+      Color: {r: 0, g: 1, b: 0, a: 1}
+
+    - Name: Local Path
+      Class: rviz/Path
+      Enabled: true
+      Topic: /local_path
+      Color: {r: 1, g: 0, b: 0, a: 1}
+
+    - Name: LaserScan
+      Class: rviz/LaserScan
+      Enabled: true
+      Topic: /scan
+      Size (m): 0.05
+      Color: {r: 1, g: 0, b: 0, a: 1}
+
+    - Name: TF
+      Class: rviz/TF
+      Enabled: true
+      Show Names: true
+      Frame Timeout: 15.0
+      Marker Scale: 1
+      Show Arrows: true
+      Show Axes: true
+
+  Fixed Frame: map
+  Global Options:
+    Background Color: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+    Frame Rate: 30
+
+  Tools:
+    - Class: rviz/Interact
+      Hide Inactive Objects: true
+    - Class: rviz/MoveCamera
+    - Class: rviz/Select
+    - Class: rviz/FocusCamera
+    - Class: rviz/Measure
+    - Class: rviz/SetInitialPose
+      Topic: /initialpose
+    - Class: rviz/SetGoal
+      Topic: /move_base_simple/goal
+    - Class: rviz/PublishPoint
+      Single click: true
+      Topic: /clicked_point
+
+  Views:
+    Current:
+      Class: rviz/Orbit
+      Focal Point: {x: 0, y: 0, z: 0}
+      Distance: 10
+      Pitch: 0.785
+      Yaw: 0.785
+      Near Clip Distance: 0.01
+      Far Clip Distance: 1000
+      Value: Orbit (rviz)
+    Saved: ~
+
+Window Geometry:
+  X: 0
+  Y: 0
+  Width: 1920
+  Height: 1080
+  QMainWindow State: ""
+
+
